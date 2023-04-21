@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Form } from 'src/forms/entities/forms.entity';
-
+import * as bcrypt from 'bcrypt'; 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -20,4 +20,8 @@ export class User {
 
   @OneToMany(() => Form , Form => Form.user)
   forms: Form[];
+
+  async comparePassword(candidatePassword: string): Promise<boolean> {
+    return await bcrypt.compare(candidatePassword, this.password);
+  }
 }

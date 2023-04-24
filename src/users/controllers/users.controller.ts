@@ -10,6 +10,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from '../services/users.service';
 import { User } from '../entities/users.entity';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { CreateUserDto } from '../dto/create-user.dto';
 
 
 @Controller('users')
@@ -26,7 +27,7 @@ export class UsersController {
 
   @Post()
   @ApiOperation({summary: 'Crear un usuario'})
-  async create(@Body() userData: User): Promise<User> {
-    return this.usersService.create(userData);
+  async create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
   }
 }

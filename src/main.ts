@@ -9,14 +9,13 @@ async function bootstrap() {
 
   const port = process.env.PORT;
   const config = new DocumentBuilder()
-  .setTitle('API')
-  .setDescription('API description')
+  .setTitle('Server Salas PCA')
+  .setDescription('servidor de app salas')
   .setVersion('1.0')
-  .addTag('API')
   .build();
   
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('swagger', app, document);
 
 
   await app.listen(port);
